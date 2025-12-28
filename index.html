@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+<html lang="hy">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Քննություն - ՕԿԾ Հիմունքներ</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #2980b9;
+            --accent: #e67e22;
+            --success: #27ae60;
+            --bg: #f4f7f6;
+            --code-bg: #1e1e1e;
+            --text-color: #333;
+            --card-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--bg);
+            padding: 30px;
+            padding-top: 100px;
+            /* Տեղ որոնման վահանակի համար */
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 40px;
+            border-bottom: 4px double var(--secondary);
+            padding-bottom: 10px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            margin-bottom: 35px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            border-left: 8px solid var(--secondary);
+            transition: transform 0.3s ease;
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .section-header,
+        .section-title,
+        .step-title {
+            font-weight: bold;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.9em;
+            margin-top: 20px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .text-block,
+        .content-box,
+        .step {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 12px 0;
+            border: 1px solid #ddd;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: #71e971;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            border: 1px solid #444;
+        }
+
+        .analysis,
+        .code-explanation,
+        .analysis-list,
+        .code-analysis,
+        .logic-box {
+            background: #e8f6f3;
+            border-left: 5px solid var(--success);
+            padding: 18px;
+            margin-top: 15px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
+
+        b {
+            color: var(--secondary);
+        }
+
+        code {
+            background: #eee;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        /* Search Styles */
+        .search-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #searchInput {
+            width: 60%;
+            padding: 12px 20px;
+            border: 2px solid var(--secondary);
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-btn {
+            padding: 10px 25px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .search-btn:hover {
+            background: var(--primary);
+        }
+
+        /* Թաքցնելու և ընդգծելու օժանդակ դասեր */
+        .hidden {
+            display: none !important;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            display: none;
+        }
+
+        .footer {
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Մուտքագրեք թեման որոնելու համար..." onkeyup="performSearch()">
+        <button class="search-btn" onclick="performSearch()">Որոնել</button>
+    </div>
+
+    <h1>ՕԿԾ Հիմունքներ (Քննական Ուղեցույց)</h1>
+
+    <div class="card">
+        <h2>1. Օբյեկտ-կողմնորոշված ծրագրավորման հատկությունները</h2>
+        <span class="section-header">Սահմանում</span>
+        <div class="text-block">
+            ՕԿԾ-ն (OOP) ծրագրավորման մեթոդոլոգիա է, որը հիմնված է <b>օբյեկտների</b> գաղափարի վրա, որոնք միավորում են
+            տվյալները և դրանց հետ աշխատող ֆունկցիաները։
+        </div>
+        <span class="section-header">Բացատրություն</span>
+        <div class="text-block">
+            Այն ունի 4 հիմնական սյուներ.
+            <ul>
+                <li><b>Ինկապսուլյացիա (Encapsulation):</b> Տվյալների թաքցնում և պաշտպանում դրսի միջամտությունից:</li>
+                <li><b>Ժառանգականություն (Inheritance):</b> Հնարավորություն ստեղծել նոր դասեր արդեն գոյություն
+                    ունեցողների հիման վրա:</li>
+                <li><b>Պոլիմորֆիզմ (Polymorphism):</b> Նույն ինտերֆեյսի օգտագործում տարբեր տիպի օբյեկտների համար:</li>
+                <li><b>Աբստրակցիա (Abstraction):</b> Բարդ իրականացման թաքցնում և միայն անհրաժեշտ ֆունկցիոնալության
+                    ցուցադրում:</li>
+            </ul>
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">Implementation</span>
+        <h2>Օբյեկտի ֆունկցիոնալության իրականացում</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            Օբյեկտի ֆունկցիոնալությունը իրականացվում է <b>մեթոդների</b> (անդամ-ֆունկցիաների) միջոցով: Մեթոդները
+            սահմանում են այն գործողությունները, որոնք օբյեկտը կարող է կատարել իր տվյալների հետ:
+        </div>
+
+
+
+        <span class="section-header">Իրականացման ձևերը</span>
+        <div class="content-box">
+            <ul>
+                <li><b>Դասի ներսում (Inline):</b> Ֆունկցիան սահմանվում է հենց դասի մարմնում:</li>
+                <li><b>Դասից դուրս:</b> Դասի ներսում միայն հայտարարվում է, իսկ իրականացումը գրվում է դրսում՝
+                    օգտագործելով տիրույթի որոշման օպերատորը (<code>::</code>):</li>
+            </ul>
+        </div>
+
+        <span class="section-header">Կոդի օրինակ</span>
+        <pre>
+class Calculator {
+    int result;
+public:
+    Calculator() : result(0) {}
+
+    // Իրականացում դասի ներսում
+    void reset() {
+        result = 0;
+    }
+
+    // Հայտարարում դասի ներսում
+    void add(int value);
+    
+    int getResult() { return result; }
+};
+
+// Իրականացում դասից դուրս
+void Calculator::add(int value) {
+    result += value;
+}</pre>
+
+        <div class="logic-box">
+            <b>Կարևոր է.</b> Դասից դուրս իրականացումը (<code>ClassName::MethodName</code>) կոդը դարձնում է ավելի
+            ընթեռնելի, հատկապես մեծ նախագծերում, քանի որ այն բաժանում է դասի ինտերֆեյսը (հայտարարությունը)
+            տրամաբանությունից (իրականացումից):
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">Polymorphism</span>
+        <h2>1. Բազային դասի անդամների վերասահմանումը ածանցված դասերում</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            <b>Վերասահմանումը (Overriding)</b> թույլ է տալիս ածանցված դասին փոխել կամ լրամշակել բազային դասից ժառանգած
+            մեթոդի վարքը: Դա հնարավոր է, երբ երկու դասերում ֆունկցիայի անունը, վերադարձվող տիպը և պարամետրերը նույնն են:
+        </div>
+
+
+
+        <span class="section-header">Ինչպես է այն աշխատում</span>
+        <div class="content-box">
+            <ul>
+                <li>Եթե ածանցված դասում սահմանում ենք բազային դասի նույնանուն ֆունկցիան, ապա ածանցված դասի օբյեկտով
+                    կանչելիս կաշխատի <b>նոր</b> տարբերակը:</li>
+                <li>Բազային դասի բնօրինակ մեթոդին դեռ կարելի է դիմել՝ օգտագործելով <code>Base::method()</code> ձևաչափը:
+                </li>
+                <li>Լավագույն պրակտիկա է օգտագործել <code>virtual</code> բանալի բառը բազայինում և
+                    <code>override</code>-ը՝ ածանցվածում:
+                </li>
+            </ul>
+        </div>
+
+        <span class="section-header">Կոդի օրինակ</span>
+        <pre>
+class Person {
+public:
+    virtual void introduce() {
+        cout << "I am a person." << endl;
+    }
+};
+
+class Student : public Person {
+public:
+    // Վերասահմանում ենք introduce մեթոդը
+    void introduce() override {
+        cout << "I am a student." << endl;
+    }
+    
+    void introduceOld() {
+        // Կանչում ենք բազային դասի տարբերակը
+        Person::introduce();
+    }
+};
+
+int main() {
+    Student s;
+    s.introduce();    // Արտածում է: I am a student.
+    s.introduceOld(); // Արտածում է: I am a person.
+    return 0;
+}</pre>
+
+        <div class="logic-box">
+            <b>Հիշել.</b> Վերասահմանումը (Overriding) պետք չէ շփոթել ծանրաբեռնման (Overloading) հետ: Overriding-ը
+            կատարվում է ժառանգականության ժամանակ, իսկ Overloading-ը՝ նույն դասի ներսում (տարբեր պարամետրերով):
+        </div>
+    </div>
+    <div class="card">
+        <h2>2-3. Դասի հասկացությունը, Կոնստրուկտոր և Դեստրուկտոր</h2>
+        <span class="section-header">Սահմանում</span>
+        <div class="text-block">
+            <b>Դասը (Class)</b> օբյեկտի կառուցվածքի նկարագրությունն է: <b>Կոնստրուկտորը</b> մեթոդ է, որը
+            սկզբնարժեքավորում է օբյեկտը ստեղծվելիս, իսկ <b>Դեստրուկտորը</b> ազատում է հիշողությունը օբյեկտի կյանքի
+            ավարտին:
+        </div>
+        <span class="section-header">Կոդ</span>
+        <pre>
+class Base {
+public:
+    Base() { cout << "Base Constructor\n"; }
+    virtual ~Base() { cout << "Base Destructor\n"; }
+};
+
+class Derived : public Base {
+public:
+    Derived() { cout << "Derived Constructor\n"; }
+    ~Derived() { cout << "Derived Destructor\n"; }
+};</pre>
+        <div class="analysis">
+            <b>Վերլուծություն:</b>
+            <ul>
+                <li>Օբյեկտ ստեղծելիս նախ կանչվում է <b>Base</b> կոնստրուկտորը, հետո <b>Derived</b>-ը:</li>
+                <li>Ջնջելիս հակառակն է՝ նախ <b>Derived</b> դեստրուկտորը, հետո <b>Base</b>-ը:</li>
+                <li><b>Virtual destructor</b>-ը կարևոր է, որպեսզի ժառանգ դասի հիշողությունը լիարժեք մաքրվի բազային դասի
+                    ցուցիչով ջնջելիս:</li>
+            </ul>
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">OOP Fundamentals</span>
+        <h2>Բազմաձևության և թաղանթապատման հասկացությունը</h2>
+
+        <span class="section-header">1. Թաղանթապատում (Encapsulation)</span>
+        <div class="text-block">
+            <b>Թաղանթապատումը</b> տվյալների և դրանց հետ աշխատող մեթոդների միավորումն է մեկ միասնական «պարկուճի» (դասի)
+            մեջ և տվյալների պաշտպանումը դրսի անմիջական միջամտությունից:
+        </div>
+
+
+
+        <div class="content-box">
+            <b>Օրինակ:</b> Դասի փոփոխականները հայտարարվում են <code>private</code>, իսկ դրանց հետ աշխատելու համար
+            օգտագործվում են <code>public</code> մեթոդներ (get/set):
+        </div>
+        <pre>
+class BankAccount {
+private:
+    double balance; // Թաքցված տվյալ
+public:
+    void deposit(double amount) {
+        if (amount > 0) balance += amount;
+    }
+    double getBalance() { return balance; }
+};</pre>
+
+        <span class="section-header">2. Բազմաձևություն (Polymorphism)</span>
+        <div class="text-block">
+            <b>Բազմաձևությունը</b> հնարավորություն է տալիս նույն անունով ֆունկցիան օգտագործել տարբեր տիպի օբյեկտների
+            համար: Այն թույլ է տալիս մեկ ինտերֆեյսով կառավարել տարբեր վարքագիծ ունեցող օբյեկտներ:
+        </div>
+
+
+
+        <div class="content-box">
+            <b>Օրինակ:</b> Բոլոր կենդանիները ձայն են հանում, բայց յուրաքանչյուրը՝ յուրովի:
+        </div>
+        <pre>
+class Shape {
+public:
+    virtual void draw() { cout << "Drawing a shape"; }
+};
+
+class Circle : public Shape {
+public:
+    void draw() override { cout << "Drawing a Circle"; }
+};
+
+class Square : public Shape {
+public:
+    void draw() override { cout << "Drawing a Square"; }
+};</pre>
+
+        <div class="logic-box">
+            <b>Ինչու է սա կարևոր.</b> Թաղանթապատումը ապահովում է <b>անվտանգություն</b> և կոդի մաքրություն, իսկ
+            բազմաձևությունը՝ <b>ճկունություն</b> և կոդի ընդլայնման հնարավորություն:
+        </div>
+    </div>
+    <div class="card">
+        <h2>6. Ուղղանկյուն և Քառակուսի դասերի ժառանգում</h2>
+        <span class="section-header">Սահմանում</span>
+        <div class="text-block">Սա ցույց է տալիս <b>"Is-A"</b> կապը: Քառակուսին ուղղանկյան մասնավոր տեսակ է:</div>
+        <span class="section-header">Կոդ</span>
+        <pre>
+class Rectangle {
+protected:
+    double width, height;
+public:
+    Rectangle(double w, double h) : width(w), height(h) {}
+    double getArea() { return width * height; }
+};
+
+class Square : public Rectangle {
+public:
+    Square(double side) : Rectangle(side, side) {}
+};</pre>
+        <div class="analysis">
+            <b>Վերլուծություն:</b>
+            <ul>
+                <li><code>protected</code> դաշտերը հասանելի են ժառանգ դասին, բայց փակ են դրսի համար:</li>
+                <li><code>Square(double side) : Rectangle(side, side)</code> կանչում է բազային կոնստրուկտորը՝ երկու
+                    կողմին տալով նույն արժեքը:</li>
+            </ul>
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">Practical Example</span>
+        <h2>1. Time և DateTime դասերը նկարագրող ծրագրի ստեղծում</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            Այս օրինակում <b>Time</b> դասը հանդիսանում է բազային դաս, որը պահպանում է ժամերը, րոպեները և վայրկյանները:
+            <b>DateTime</b> դասը ժառանգվում է Time-ից և ավելացնում օրացուցային տվյալներ (օր, ամիս, տարի)՝ ստեղծելով
+            ամբողջական ամսաթվի և ժամանակի մոդել:
+        </div>
+
+
+
+        <span class="section-header">Կոդի իրականացում</span>
+        <pre>
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+using namespace std;
+
+// Բազային դաս - Ժամանակ
+class Time {
+protected:
+    int hour, minute, second;
+public:
+    Time(int h, int m, int s) : hour(h), minute(m), second(s) {}
+
+    void displayTime() {
+        cout << setfill('0') << setw(2) << hour << ":"
+             << setw(2) << minute << ":" << setw(2) << second;
+    }
+};
+
+// Ածանցված դաս - Ամսաթիվ և Ժամանակ
+class DateTime : public Time {
+private:
+    int day, month, year;
+public:
+    // Կոնստրուկտորը սկզբնարժեքավորում է և՛ ժամանակը, և՛ ամսաթիվը
+    DateTime(int d, int mo, int y, int h, int mi, int s) 
+        : Time(h, mi, s), day(d), month(mo), year(y) {}
+
+    void displayDateTime() {
+        cout << day << "/" << month << "/" << year << " ";
+        displayTime(); // Օգտագործում ենք բազային դասի մեթոդը
+        cout << endl;
+    }
+};
+
+int main() {
+    DateTime dt(25, 12, 2023, 14, 30, 05);
+    cout << "Current Date and Time: ";
+    dt.displayDateTime();
+    return 0;
+}</pre>
+
+        <div class="analysis-list">
+            <b>Իրականացման առանձնահատկությունները.</b>
+            <ul>
+                <li><b>Hierarchical Construction:</b> <code>DateTime</code>-ի կոնստրուկտորը պարտադիր կերպով կանչում է
+                    <code>Time</code>-ի կոնստրուկտորը՝ ժամանակային մասը սկզբնարժեքավորելու համար:
+                </li>
+                <li><b>Reusability:</b> Մենք կարիք չունենք վերագրելու ժամանակի արտածման տրամաբանությունը, պարզապես
+                    կանչում ենք <code>displayTime()</code>-ը:</li>
+                <li><b>Formatting:</b> Օգտագործված է <code>&lt;iomanip&gt;</code>-ը՝ ժամանակը գեղեցիկ (00:00:00)
+                    ֆորմատով ցույց տալու համար:</li>
+            </ul>
+        </div>
+
+        <div class="logic-box">
+            <b>Քննական հուշում:</b> Սա "Has-A" և "Is-A" հարաբերությունների համադրման լավ օրինակ է: DateTime-ը
+            <b>is-a</b> Time (ժամանակի տեսակ է) և միաժամանակ <b>has-a</b> Date (ունի ամսաթիվ):
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">Practical Example</span>
+        <h2>1. Person և Employee դասերը նկարագրող ծրագրի ստեղծում</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            Այս օրինակում <b>Person</b>-ը բազային դաս է, որը պարունակում է ընդհանուր հատկանիշներ (անուն, տարիք), իսկ
+            <b>Employee</b>-ն ածանցված դաս է, որն ավելացնում է աշխատանքային տվյալներ (աշխատավարձ, պաշտոն)։
+        </div>
+
+
+
+        <span class="section-header">Կոդի իրականացում</span>
+        <pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+// Բազային դաս
+class Person {
+protected:
+    string name;
+    int age;
+public:
+    Person(string n, int a) : name(n), age(a) {}
+    
+    void displayInfo() {
+        cout << "Name: " << name << ", Age: " << age << endl;
+    }
+};
+
+// Ածանցված դաս
+class Employee : public Person {
+private:
+    double salary;
+    string position;
+public:
+    // Կոնստրուկտորը կանչում է բազային դասի կոնստրուկտորը
+    Employee(string n, int a, double s, string p) 
+        : Person(n, a), salary(s), position(p) {}
+
+    void displayEmployee() {
+        displayInfo(); // Կանչում ենք բազայինի մեթոդը
+        cout << "Position: " << position << ", Salary: $" << salary << endl;
+    }
+};
+
+int main() {
+    Employee emp("Karen", 30, 500000, "Developer");
+    emp.displayEmployee();
+    return 0;
+}</pre>
+
+        <div class="analysis-list">
+            <b>Իրականացման առանձնահատկությունները.</b>
+            <ul>
+                <li><b>Protected անդամներ:</b> <code>name</code> և <code>age</code> փոփոխականները <code>protected</code>
+                    են, որպեսզի <code>Employee</code> դասը կարողանա ուղղակիորեն օգտագործել դրանք:</li>
+                <li><b>Կոնստրուկտորների փոխանցում:</b> <code>Employee</code>-ի կոնստրուկտորը սկզբում կանչում է
+                    <code>Person(n, a)</code>՝ ապահովելով հիմնական տվյալների սկզբնարժեքավորումը:
+                </li>
+                <li><b>Վարքագծի ընդլայնում:</b> <code>Employee</code> օբյեկտը օգտագործում է և՛ ծնողից եկած
+                    <code>displayInfo()</code>-ն, և՛ իր սեփական տվյալները:
+                </li>
+            </ul>
+        </div>
+
+        <div class="logic-box">
+            <b>Կարևոր է:</b> Սա "Is-A" հարաբերության օրինակ է՝ Employee <b>is a</b> Person (Աշխատակիցը մարդ է):
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">System Design</span>
+        <h2>1. Օբյեկտ կողմնորոշված մոտեցման կիրառում</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            Օբյեկտ կողմնորոշված մոտեցումը (Object-Oriented Approach) կիրառվում է բարդ ծրագրային համակարգերը նախագծելիս՝
+            խնդիրը դիտարկելով որպես իրական աշխարհի օբյեկտների փոխազդեցություն: Այս մոտեցումը հիմնված է չորս սյուների
+            վրա՝ <b>Աբստրակցիա, Ինկապսուլյացիա, Ժառանգականություն և Բազմաձևություն</b>:
+        </div>
+
+
+
+        <span class="section-header">Կիրառման հիմնական քայլերը</span>
+        <div class="content-box">
+            <ul>
+                <li><b>Օբյեկտների նույնականացում:</b> Որոշվում են համակարգի գլխավոր սուբյեկտները (օրինակ՝ Օգտատեր,
+                    Պատվեր, Տվյալների բազա):</li>
+                <li><b>Դասերի սահմանում:</b> Յուրաքանչյուր օբյեկտի համար ստեղծվում է դաս (Class), որը նկարագրում է դրա
+                    հատկությունները (Fields) և վարքագիծը (Methods):</li>
+                <li><b>Հարաբերությունների հաստատում:</b> Որոշվում է, թե ինչպես են դասերը կապված միմյանց հետ (Ժառանգում
+                    "Is-A" կամ Ագրեգացիա "Has-A"):</li>
+            </ul>
+        </div>
+
+        <span class="section-header">Կիրառման օրինակ (Գրադարանի համակարգ)</span>
+        <pre>
+// 1. Աբստրակցիա - սահմանում ենք ընդհանուր մոդելը
+class LibraryItem {
+protected:
+    string title;
+public:
+    virtual void checkout() = 0; // Աբստրակտ մեթոդ
+};
+
+// 2. Ժառանգականություն և Կիրառում
+class Book : public LibraryItem {
+public:
+    void checkout() override {
+        cout << "Checking out book: " << title << endl;
+    }
+};
+
+class Magazine : public LibraryItem {
+public:
+    void checkout() override {
+        cout << "Checking out magazine: " << title << endl;
+    }
+};</pre>
+
+        <div class="analysis-list">
+            <b>Մոտեցման առավելությունները գործնականում.</b>
+            <ul>
+                <li><b>Մոդուլյարություն:</b> Յուրաքանչյուր դաս կարող է մշակվել և թեստավորվել մյուսներից անկախ:</li>
+                <li><b>Կոդի վերաօգտագործում:</b> Բազային ֆունկցիոնալությունը գրվում է մեկ անգամ բազային դասում:</li>
+                <li><b>Հեշտ սպասարկում:</b> Համակարգի մի մասում փոփոխություն անելը չի պահանջում ամբողջ կոդի վերագրում:
+                </li>
+            </ul>
+        </div>
+
+        <div class="logic-box">
+            <b>Ամփոփում:</b> ՕԿԾ մոտեցման կիրառումը թույլ է տալիս անցում կատարել "ինչպես անել" (procedural) մտելակերպից
+            դեպի "ինչի հետ աշխատել" (object-oriented), ինչը էականորեն բարձրացնում է ծրագրի որակը:
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">C++ Data Types</span>
+        <h2>1. Տողային տվյալներ (String դաս)</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            C++-ում <b>std::string</b>-ը հզոր դաս է, որը նախատեսված է տեքստային տվյալների (տողերի) հետ աշխատելու համար:
+            Այն թույլ է տալիս պահպանել կամայական երկարության սիմվոլների հաջորդականություն և ավտոմատ կերպով կառավարում է
+            հիշողությունը:
+        </div>
+
+
+
+        <span class="section-header">String դասի հիմնական առավելությունները</span>
+        <div class="content-box">
+            <ul>
+                <li><b>Դինամիկ չափս:</b> Տողի երկարությունը կարող է փոփոխվել ծրագրի աշխատանքի ընթացքում:</li>
+                <li><b>Անվտանգություն:</b> Ի տարբերություն <code>char*</code>-ի, string-ը պաշտպանում է հիշողության
+                    սահմաններից դուրս գալու սխալներից:</li>
+                <li><b>Հարմարավետություն:</b> Ունի ներկառուցված օպերատորներ (<code>+</code>, <code>==</code>,
+                    <code>&lt;</code>) տեքստերի համեմատման և միացման համար:
+                </li>
+            </ul>
+        </div>
+
+        <span class="section-header">Կոդի օրինակ</span>
+        <pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt; // Անհրաժեշտ է string-ի համար
+using namespace std;
+
+int main() {
+    // Տողի հայտարարում և սկզբնարժեքավորում
+    string s1 = "Hello";
+    string s2 = "World";
+
+    // Տողերի միացում (Concatenation)
+    string s3 = s1 + " " + s2; 
+
+    // Մուտքագրում (ամբողջ տողը՝ բացատներով)
+    string fullName;
+    cout << "Enter your name: ";
+    getline(cin, fullName); 
+
+    cout << "Full string: " << s3 << endl;
+    cout << "Length: " << s3.length() << " characters." << endl;
+
+    return 0;
+}</pre>
+
+        <div class="logic-box">
+            <b>Հիշել.</b> <code>cin >> s;</code> հրամանը կարդում է տեքստը միայն մինչև առաջին բացատը: Ամբողջական
+            նախադասություն կարդալու համար միշտ օգտագործիր <code>getline(cin, s);</code> ֆունկցիան:
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">Real-world Examples</span>
+        <h2>1. Օբյեկտ կողմնորոշված մոդելը կոնկրետ օրինակներում</h2>
+
+        <span class="section-header">Օրինակ 1: Ավտոմեքենայի մոդելավորում</span>
+        <div class="text-block">
+            Իրական աշխարհի <b>Ավտոմեքենան</b> ՕԿԾ մոդելում դիտարկվում է որպես օբյեկտ, որն ունի վիճակ (տվյալներ) և
+            վարքագիծ (մեթոդներ):
+        </div>
+
+
+
+        <div class="content-box">
+            <ul>
+                <li><b>Հատկություններ (Data):</b> գույն, մոդել, արագություն, վառելիքի քանակ:</li>
+                <li><b>Գործողություններ (Methods):</b> շարժվել, արգելակել, լիցքավորել:</li>
+            </ul>
+        </div>
+
+        <span class="section-header">Օրինակ 2: Բանկային համակարգ (Ժառանգականություն և Բազմաձևություն)</span>
+        <div class="text-block">
+            Դիտարկենք <b>Հաշիվ (Account)</b> բազային դասը և դրանից ածանցված տարբեր տեսակի հաշիվները:
+        </div>
+
+
+
+        <pre>
+class Account {
+protected:
+    double balance;
+public:
+    virtual void withdraw(double amount) = 0; // Աբստրակտ մեթոդ
+};
+
+class SavingsAccount : public Account {
+public:
+    void withdraw(double amount) override {
+        if (balance - amount >= 100) balance -= amount; // Նվազագույն մնացորդ
+    }
+};
+
+class CheckingAccount : public Account {
+public:
+    void withdraw(double amount) override {
+        balance -= amount; // Սահմանափակում չկա
+    }
+};</pre>
+
+        <div class="analysis-list">
+            <b>Ինչու է սա կարևոր.</b>
+            <ul>
+                <li><b>Մոդելավորում:</b> Մենք ստեղծում ենք իրական օբյեկտի թվային պատճենը (Digital Twin):</li>
+                <li><b>Ճկունություն:</b> Եթե բանկը որոշի նոր տեսակի հաշիվ ավելացնել (օրինակ՝ Business Account), մենք
+                    պարզապես կստեղծենք նոր ածանցված դաս՝ առանց հին կոդը փոխելու:</li>
+                <li><b>Անվտանգություն:</b> Օգտատերը չի կարող ուղղակի փոխել <code>balance</code>-ը, նա պետք է օգտագործի
+                    <code>withdraw</code> մեթոդը:
+                </li>
+            </ul>
+        </div>
+
+        <div class="logic-box">
+            <b>Ամփոփում:</b> ՕԿԾ մոդելը թույլ է տալիս ծրագրավորողին մտածել ոչ թե մեքենայական հրահանգներով, այլ իրական
+            աշխարհի հասկացություններով, ինչը հեշտացնում է բարդ ծրագրերի ստեղծումը:
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">Software Engineering</span>
+        <h2>Օբյեկտ կողմնորոշված մոդելը ծրագրային ապահովում ստեղծելիս</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            Օբյեկտ կողմնորոշված մոդելավորումը (OOM) ծրագրային ապահովման ստեղծման այնպիսի մոտեցում է, որտեղ համակարգը
+            դիտարկվում է որպես փոխազդող <b>օբյեկտների հավաքածու</b>: Սա թույլ է տալիս բարդ համակարգերը բաժանել ավելի
+            փոքր, կառավարելի և վերաօգտագործելի մասերի:
+        </div>
+
+
+
+        <span class="section-header">Մոդելի հիմնական փուլերը</span>
+        <div class="content-box">
+            <ul>
+                <li><b>OOA (Object-Oriented Analysis):</b> Խնդրի ուսումնասիրում և այն օբյեկտների սահմանում, որոնք պետք է
+                    գոյություն ունենան համակարգում:</li>
+                <li><b>OOD (Object-Oriented Design):</b> Օբյեկտների միջև կապերի, հիերարխիայի և ինտերֆեյսների նախագծում
+                    (օրինակ՝ UML դիագրամների միջոցով):</li>
+                <li><b>OOP (Object-Oriented Programming):</b> Նախագծի իրականացումը կոնկրետ ծրագրավորման լեզվով (օրինակ՝
+                    C++):</li>
+            </ul>
+        </div>
+
+        <span class="section-header">Մոդելի առավելությունները</span>
+        <div class="analysis-list">
+            <ul>
+                <li><b>Վերաօգտագործելիություն (Reusability):</b> Ստեղծված դասերը կարելի է օգտագործել այլ նախագծերում:
+                </li>
+                <li><b>Պահպանման դյուրինություն (Maintainability):</b> Սխալները գտնելը և ուղղելը ավելի հեշտ է, քանի որ
+                    կոդը մոդուլյար է:</li>
+                <li><b>Ընդլայնելիություն (Scalability):</b> Հեշտ է ավելացնել նոր ֆունկցիոնալություն՝ ստեղծելով նոր
+                    ժառանգ դասեր:</li>
+                <li><b>Իրական աշխարհի մոդելավորում:</b> Օբյեկտները հաճախ համապատասխանում են իրական աշխարհի առարկաներին
+                    (օրինակ՝ Օգտատեր, Վճարում, Ապրանք):</li>
+            </ul>
+        </div>
+
+        <div class="logic-box">
+            <b>Ամփոփում:</b> Օբյեկտ կողմնորոշված մոդելը կամրջում է իրական աշխարհի խնդիրը և համակարգչային կոդը՝ դարձնելով
+            ծրագրային ապահովումը ավելի ճկուն և որակյալ:
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">String Manipulation</span>
+        <h2>1. Տեքստերի մշակման աշխատանքներ (Strings in C++)</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            C++-ում տեքստերի հետ աշխատելու համար օգտագործվում է <code>&lt;string&gt;</code> գրադարանը: Ի տարբերություն
+            C-ի <code>char</code> զանգվածների, <code>std::string</code>-ը դինամիկ օբյեկտ է, որն ունի ներկառուցված
+            մեթոդներ տեքստը փոփոխելու, որոնելու և կառավարելու համար:
+        </div>
+
+
+
+        <span class="section-header">Հիմնական գործողությունները</span>
+        <div class="content-box">
+            <ul>
+                <li><b>Կոնկատենացիա (+):</b> Երկու տեքստերի միացում:</li>
+                <li><b>Երկարության որոշում:</b> <code>s.length()</code> կամ <code>s.size()</code>:</li>
+                <li><b>Որոնում:</b> <code>s.find("բառ")</code> - վերադարձնում է առաջին հանդիպած դիրքը:</li>
+                <li><b>Ենթատեքստի ստացում:</b> <code>s.substr(pos, len)</code> - կտրում է տեքստի մի մասը:</li>
+                <li><b>Փոփոխում:</b> <code>s.replace()</code>, <code>s.insert()</code>, <code>s.erase()</code>:</li>
+            </ul>
+        </div>
+
+        <span class="section-header">Կոդի օրինակ</span>
+        <pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    string text = "C++ Programming";
+    
+    // 1. Չափը
+    cout << "Length: " << text.length() << endl;
+
+    // 2. Որոնում
+    size_t pos = text.find("Programming");
+    if (pos != string::npos) {
+        cout << "Found at: " << pos << endl;
+    }
+
+    // 3. Կտրում (Substring)
+    string sub = text.substr(0, 3); // "C++"
+    
+    // 4. Փոփոխում
+    text.append(" is powerful");
+    cout << text << endl;
+
+    return 0;
+}</pre>
+
+        <div class="logic-box">
+            <b>Հիշել.</b> Տեքստերի հետ աշխատելիս <code>std::string</code>-ը ավտոմատ կերպով կառավարում է հիշողությունը,
+            ինչը թույլ է տալիս խուսափել "buffer overflow" սխալներից, որոնք հաճախ հանդիպում են <code>char</code>
+            զանգվածների դեպքում:
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">Advanced OOP</span>
+        <h2>Վիրտուալ բազային դասեր և Վիրտուալ ֆունկցիաներ</h2>
+
+        <span class="section-header">1. Վիրտուալ բազային դասեր (Diamond Problem)</span>
+        <div class="text-block">
+            <b>Վիրտուալ ժառանգումը</b> օգտագործվում է բազմակի ժառանգականության ժամանակ, որպեսզի խուսափենք բազային դասի
+            կրկնօրինակումից: Եթե երկու դաս ժառանգվում են նույն բազային դասից, իսկ երրորդը ժառանգվում է այդ երկուսից, ապա
+            <code>virtual</code> բառը երաշխավորում է, որ բազային դասից միայն մեկ օբյեկտ կստեղծվի:
+        </div>
+
+
+
+        <pre>
+class A { public: int x; };
+class B : virtual public A { };
+class C : virtual public A { };
+class D : public B, public C { }; // D-ն կունենա միայն մեկ 'x'</pre>
+
+        <span class="section-header">2. Վիրտուալ ֆունկցիաներ և Բազմաձևություն</span>
+        <div class="text-block">
+            <b>Վիրտուալ ֆունկցիան</b> բազային դասում հայտարարված ֆունկցիա է, որը ածանցված դասերում կարող է
+            վերասահմանվել: Այն թույլ է տալիս իրականացնել <b>Late Binding</b> (ուշ կապակցում), երբ կանչվող ֆունկցիան
+            որոշվում է ծրագրի աշխատանքի պահին (Runtime):
+        </div>
+
+
+
+        <pre>
+class Shape {
+public:
+    virtual void draw() { cout << "Generic Shape" << endl; }
+};
+
+class Circle : public Shape {
+public:
+    void draw() override { cout << "Circle" << endl; }
+};
+
+int main() {
+    Shape* s = new Circle();
+    s->draw(); // Կկանչվի Circle-ի draw-ն՝ virtual-ի շնորհիվ
+    delete s;
+}</pre>
+
+        <div class="logic-box">
+            <b>Հիմնական տարբերությունը.</b>
+            <ul>
+                <li><b>Վիրտուալ բազային դաս:</b> Լուծում է հիշողության և անորոշության խնդիրը ժառանգական հիերարխիայում:
+                </li>
+                <li><b>Վիրտուալ ֆունկցիա:</b> Ապահովում է դինամիկ բազմաձևություն (նույն ինտերֆեյս, տարբեր վարքագիծ):
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">Implementation</span>
+        <h2>1. Օբյեկտին արժեքների փոխանցում (Passing Values to Objects)</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            Օբյեկտին արժեքներ փոխանցելու հիմնական նպատակն է սկզբնարժեքավորել դրա ներքին փոփոխականները (տվյալները)։ Դա
+            հիմնականում կատարվում է երկու եղանակով՝ <b>Կոնստրուկտորների</b> միջոցով (ստեղծման պահին) կամ
+            <b>Մեթոդների</b> միջոցով (ստեղծումից հետո)։
+        </div>
+
+
+
+        <span class="section-header">Եղանակները</span>
+        <div class="content-box">
+            <ul>
+                <li><b>Պարամետրական կոնստրուկտոր:</b> Արժեքները փոխանցվում են հենց օբյեկտը հայտարարելիս։</li>
+                <li><b>Սեթերներ (Set methods):</b> Ֆունկցիաներ, որոնք թույլ են տալիս փոխել արժեքները ցանկացած ժամանակ։
+                </li>
+                <li><b>Initialization List:</b> Կոնստրուկտորի ներսում արժեքների արագ և արդյունավետ փոխանցում բազային
+                    դասին կամ անդամներին։</li>
+            </ul>
+        </div>
+
+        <span class="section-header">Կոդի օրինակ</span>
+        <pre>
+class Student {
+    string name;
+    int age;
+public:
+    // 1. Փոխանցում կոնստրուկտորի միջոցով
+    Student(string n, int a) : name(n), age(a) {}
+
+    // 2. Փոխանցում մեթոդի միջոցով (Setter)
+    void setAge(int a) {
+        if (a > 0) age = a;
+    }
+
+    void display() {
+        cout << name << ", " << age << " years old." << endl;
+    }
+};
+
+int main() {
+    // Արժեքների փոխանցում ստեղծման պահին
+    Student s1("Armen", 20);
+    
+    // Արժեքի փոխանցում ստեղծումից հետո
+    s1.setAge(21);
+    
+    s1.display();
+    return 0;
+}</pre>
+
+        <div class="logic-box">
+            <b>Հիշել.</b> Լավագույն պրակտիկան <code>initialization list</code>-ի օգտագործումն է
+            (<code>: name(n), age(a)</code>), քանի որ այն ավելի արագ է աշխատում և անհրաժեշտ է <code>const</code> կամ
+            <code>reference</code> անդամների դեպքում։
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">Implementation</span>
+        <h2>1. Ժառանգ դասի ստեղծում համապատասխան անդամներով ու մեթոդներով</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            Ժառանգ դասը (Derived Class) ստեղծվում է բազային դասի հիման վրա: Այն ստանում է բազային դասի բոլոր
+            <code>public</code> և <code>protected</code> անդամները և կարող է ունենալ իր սեփական փոփոխականներն ու
+            ֆունկցիաները:
+        </div>
+
+
+
+        <span class="section-header">Կառուցվածքը</span>
+        <div class="content-box">
+            Ժառանգ դասի սահմանման ձևը.
+            <br><code>class Derived : access_specifier Base { ... };</code>
+        </div>
+
+        <span class="section-header">Կոդի օրինակ (Ավտոմեքենա և Էլեկտրոմոբիլ)</span>
+        <pre>
+class Car {
+protected:
+    string brand;
+public:
+    Car(string b) : brand(b) {}
+    void drive() { cout << brand << " is driving..." << endl; }
+};
+
+// ElectricCar-ը ժառանգ դաս է
+class ElectricCar : public Car {
+private:
+    int batteryLevel; // Սեփական անդամ
+public:
+    // Կոնստրուկտորը կանչում է բազային դասի կոնստրուկտորը
+    ElectricCar(string b, int bat) : Car(b), batteryLevel(bat) {}
+
+    void showBattery() { // Սեփական մեթոդ
+        cout << "Battery: " << batteryLevel << "%" << endl;
+    }
+    
+    // Բազային դասի մեթոդի օգտագործում և լրացում
+    void charge() { cout << brand << " is charging." << endl; }
+};</pre>
+
+        <div class="analysis-list">
+            <b>Կարևոր կանոններ.</b>
+            <ul>
+                <li><b>Կոնստրուկտորներ:</b> Ժառանգ դասի կոնստրուկտորը պետք է կանչի բազային դասի կոնստրուկտորը՝ ծնողից
+                    ժառանգած անդամները սկզբնարժեքավորելու համար:</li>
+                <li><b>Անդամների ավելացում:</b> Ժառանգ դասը կարող է ունենալ լրացուցիչ տվյալներ (օրինակ՝
+                    <code>batteryLevel</code>), որոնք բազային դասը չունի:
+                </li>
+                <li><b>Մեթոդներ:</b> Ժառանգ դասը կարող է օգտագործել ծնողի մեթոդները (<code>drive()</code>) կամ սահմանել
+                    նորերը (<code>showBattery()</code>):</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="tag">Object Lifecycle</span>
+        <h2>Կոնստրուկտորների և դեստրուկտորների կանչման հերթականությունը</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            Ժառանգականության ժամանակ կոնստրուկտորները և դեստրուկտորները չեն ժառանգվում սովորական մեթոդների նման, բայց
+            դրանք կանչվում են որոշակի հերթականությամբ՝ ապահովելու համար օբյեկտի ամբողջական սկզբնարժեքավորումը և
+            մաքրումը:
+        </div>
+
+
+
+        <span class="section-header">Կանչման կարգը</span>
+        <div class="content-box">
+            <ul>
+                <li><b>Կոնստրուկտորներ:</b> Կանչվում են <b>վերևից ներքև</b> (Բազայինից դեպի Ժառանգ): Նախ ստեղծվում է
+                    "հիմքը", հետո ավելացվում են ժառանգի մասերը:</li>
+                <li><b>Դեստրուկտորներ:</b> Կանչվում են <b>ներքևից վերև</b> (Ժառանգից դեպի Բազային): Նախ քանդվում է
+                    ժառանգի մասը, հետո նոր բազայինը:</li>
+            </ul>
+        </div>
+
+        <span class="section-header">Կոդի օրինակ</span>
+        <pre>
+class Base {
+public:
+    Base() { cout << "Base Constructor" << endl; }
+    virtual ~Base() { cout << "Base Destructor" << endl; }
+};
+
+class Derived : public Base {
+public:
+    Derived() { cout << "Derived Constructor" << endl; }
+    ~Derived() { cout << "Derived Destructor" << endl; }
+};
+
+int main() {
+    Derived obj; 
+    // Արտածումը կլինի:
+    // Base Constructor
+    // Derived Constructor
+    return 0;
+    // Ծրագրի ավարտին:
+    // Derived Destructor
+    // Base Destructor
+}</pre>
+
+        <div class="logic-box">
+            <b>Կարևոր է:</b> Բազային դասի դեստրուկտորը միշտ պետք է լինի <code>virtual</code>: Եթե այն վիրտուալ չլինի,
+            ապա բազային դասի ցուցիչով ժառանգ օբյեկտը ջնջելիս ժառանգի դեստրուկտորը չի կանչվի, ինչը կբերի հիշողության
+            կորստի (memory leak):
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="tag">Implementation</span>
+        <h2>Ժառանգ դասի օբյեկտի հայտարարում</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            Ժառանգ դասի օբյեկտի հայտարարումը չի տարբերվում սովորական օբյեկտի հայտարարումից, սակայն հիշողության մեջ այն
+            զբաղեցնում է ավելի շատ տեղ, քանի որ պարունակում է և՛ բազային դասի տվյալները, և՛ իր սեփականները։
+        </div>
+
+
+
+        <span class="section-header">Հայտարարման ձևերը</span>
+        <div class="content-box">
+            <ul>
+                <li><b>Ստատիկ հայտարարում (Stack):</b> <code>Derived obj;</code></li>
+                <li><b>Դինամիկ հայտարարում (Heap):</b> <code>Derived* ptr = new Derived();</code></li>
+            </ul>
+        </div>
+
+        <span class="section-header">Կոդի օրինակ</span>
+        <pre>
+class Parent {
+public:
+    void sayHello() { cout << "Hello from Parent" << endl; }
+};
+
+class Child : public Parent {
+public:
+    void sayHi() { cout << "Hi from Child" << endl; }
+};
+
+int main() {
+    // 1. Օբյեկտի հայտարարում ստեկում
+    Child myObj;
+    
+    // 2. Բազային դասից ժառանգած մեթոդի կանչ
+    myObj.sayHello(); 
+    
+    // 3. Սեփական մեթոդի կանչ
+    myObj.sayHi();
+
+    // 4. Ցուցիչի միջոցով (դինամիկ)
+    Parent* p = new Child();
+    p->sayHello(); // Հասանելի են միայն Parent-ի անդամները (առանց վիրտուալ ֆունկցիաների)
+    
+    delete p;
+    return 0;
+}</pre>
+
+        <div class="logic-box">
+            <b>Հիշել.</b> Երբ հայտարարում ենք <code>Child</code> տիպի օբյեկտ, ավտոմատ կերպով կանչվում է
+            <code>Parent</code>-ի կոնստրուկտորը, իսկ հետո նոր <code>Child</code>-ինը։ Սա երաշխավորում է, որ օբյեկտի
+            "ծնողական" մասը պատրաստ է օգտագործման։
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="tag">Access Control</span>
+        <h2>1. Բազային դասի հասանելիության կառավարում (Access Specifiers)</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            C++-ում ժառանգականության ժամանակ կարելի է նշել հասանելիության մակարդակը (`public`, `protected` կամ
+            `private`), որը որոշում է, թե ինչպես են բազային դասի անդամները հասանելի լինելու ածանցված դասին և դրսի
+            աշխարհին:
+        </div>
+
+
+
+        <span class="section-header">Հիմնական տեսակները</span>
+        <div class="content-box">
+            <ul>
+                <li><b>Public Inheritance:</b> Բազայինի <code>public</code>-ը մնում է <code>public</code>, իսկ
+                    <code>protected</code>-ը՝ <code>protected</code>:
+                </li>
+                <li><b>Protected Inheritance:</b> Բազայինի <code>public</code> և <code>protected</code> անդամները
+                    ածանցված դասում դառնում են <code>protected</code>:</li>
+                <li><b>Private Inheritance:</b> Բազայինի բոլոր անդամները ածանցված դասում դառնում են
+                    <code>private</code>:
+                </li>
+            </ul>
+        </div>
+
+        <span class="section-header">Կոդի օրինակ</span>
+        <pre>
+class Base {
+public:    int pub = 1;
+protected: int prot = 2;
+private:   int priv = 3; // Անհասանելի է ժառանգներին
+};
+
+class PublicDerived : public Base {
+    // pub -> հասանելի է որպես public
+    // prot -> հասանելի է որպես protected
+};
+
+class PrivateDerived : private Base {
+    // pub -> դառնում է private
+    // prot -> դառնում է private
+};
+
+int main() {
+    PublicDerived d1;
+    d1.pub = 10; // OK
+    // d1.prot = 20; // ERROR (այն protected է)
+    
+    PrivateDerived d2;
+    // d2.pub = 10; // ERROR (այն արդեն private է այստեղ)
+}</pre>
+
+        <div class="logic-box">
+            <b>Հիշել.</b> Բազային դասի <code>private</code> անդամները <b>երբեք</b> ուղղակիորեն հասանելի չեն ածանցված
+            դասերին, անկախ ժառանգման տեսակից:
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="tag">Ժառանգականություն</span>
+        <h2>Բազային և ածանցված դասեր (Base & Derived Classes)</h2>
+
+        <span class="section-header">Սահմանում</span>
+        <div class="text-block">
+            <b>Բազային դասը (Base Class)</b> այն դասն է, որից ժառանգվում են հատկությունները:
+            <b>Ածանցված դասը (Derived Class)</b> այն դասն է, որը ժառանգում է բազային դասի անդամները և կարող է ավելացնել
+            նորերը կամ վերասահմանել հինը:
+        </div>
+
+        <span class="section-header">Բացատրություն</span>
+        <div class="content-box">
+            Ժառանգականությունը թույլ է տալիս ստեղծել հիերարխիա: Օրինակ՝ "Շունը կենդանի է" (Dog is an Animal):
+            Այստեղ <b>Animal</b>-ը բազային դասն է, իսկ <b>Dog</b>-ը՝ ածանցված:
+        </div>
+
+        <span class="section-header">Կոդի օրինակ</span>
+        <pre>
+class Animal {
+public:
+    void eat() { cout << "Eating..." << endl; }
+};
+
+// Dog-ը ժառանգում է Animal-ից
+class Dog : public Animal {
+public:
+    void bark() { cout << "Barking..." << endl; }
+};
+
+int main() {
+    Dog myDog;
+    myDog.eat();  // Կանչվում է բազային դասի մեթոդը
+    myDog.bark(); // Կանչվում է սեփական մեթոդը
+    return 0;
+}</pre>
+
+        <div class="analysis-list">
+            <b>Հիմնական կետեր.</b>
+            <ul>
+                <li><code>public Animal</code> նշանակում է, որ բազային դասի հանրային անդամները մնում են հանրային նաև
+                    ածանցված դասում:</li>
+                <li>Ածանցված դասը չի կարող ուղղակիորեն օգտագործել բազային դասի <code>private</code> անդամները:</li>
+                <li>Սա օգնում է կոդի վերաօգտագործմանը (Code Reusability):</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>10. Վեկտոր և Մատրիցա դասերի ժառանգում</h2>
+        <span class="section-header">Սահմանում</span>
+        <div class="text-block">Մատրիցան կարելի է դիտարկել որպես վեկտորների հավաքածու: Սա ռեսուրսների վերաօգտագործման
+            օրինակ է:</div>
+        <span class="section-header">Կոդ</span>
+        <pre>
+class MyVector {
+protected:
+    int* data;
+    int size;
+public:
+    MyVector(int s) : size(s) { data = new int[size]; }
+    virtual ~MyVector() { delete[] data; }
+};
+
+class Matrix : public MyVector {
+    int rows, cols;
+public:
+    Matrix(int r, int c) : MyVector(r * c), rows(r), cols(c) {}
+};</pre>
+        <div class="analysis">
+            <b>Վերլուծություն:</b>
+            <ul>
+                <li>Մատրիցան ժառանգում է <b>MyVector</b>-ի դինամիկ զանգվածը և օգտագործում այն <code>rows * cols</code>
+                    չափով:</li>
+                <li>Սա թույլ է տալիս կենտրոնացնել հիշողության կառավարումը մեկ տեղում (բազային դասում):</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>1. Եռանկյուն և Բուրգ դասերի ժառանգում</h2>
+        <span class="section-header">Սահմանում</span>
+        <div class="text-block"><b>Ժառանգականությունը</b> ՕԿԾ հիմնարար հատկություն է, որը թույլ է տալիս ստեղծել նոր դաս
+            (Բուրգ)՝ օգտագործելով գոյություն ունեցող դասի (Եռանկյուն) հատկանիշները։ Սա կոչվում է <b>"is-a"</b> կապ։
+        </div>
+        <span class="section-header">Բացատրություն</span>
+        <div class="text-block">Բուրգը երկրաչափական մարմին է, որի հիմքը եռանկյուն է։ Ժառանգելով
+            <code>Triangle</code>-ից, <code>Pyramid</code>-ը ավտոմատ ստանում է հիմքի և բարձրության տվյալները՝
+            ավելացնելով միայն իր սեփական բարձրությունը (ծավալը հաշվելու համար)։
+        </div>
+        <span class="section-header">Կոդ</span>
+        <pre>
+class Triangle {
+protected:
+    double base, h;
+public:
+    Triangle(double b, double h1) : base(b), h(h1) {}
+    double getArea() { return 0.5 * base * h; }
+};
+
+class Pyramid : public Triangle {
+    double pyraHeight;
+public:
+    Pyramid(double b, double h1, double ph) : Triangle(b, h1), pyraHeight(ph) {}
+    double getVolume() { return (1.0/3.0) * getArea() * pyraHeight; }
+};</pre>
+        <div class="analysis">
+            <b>Կոդի վերլուծություն:</b>
+            <ul>
+                <li><code>Triangle(double b, double h1)</code>: Բազային կոնստրուկտորն է։</li>
+                <li><code>: Triangle(b, h1)</code>: Ժառանգ դասի կոնստրուկտորը <b>պարտադիր</b> պետք է կանչի ծնողի
+                    կոնստրուկտորը, եթե վերջինս ունի պարամետրեր։</li>
+                <li><code>getArea()</code>: Բուրգը օգտագործում է ծնողի մեթոդը սեփական ծավալը հաշվելու համար։</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>6. Get և Set ֆունկցիաներ</h2>
+        <span class="section-header">Սահմանում</span>
+        <div class="text-block"><b>Get</b> և <b>Set</b> մեթոդները (Accessors/Mutators) օգտագործվում են ինկապսուլյացիան
+            ապահովելու համար՝ թույլ տալով անվտանգ կերպով կարդալ կամ փոփոխել <code>private</code> տվյալները։</div>
+        <span class="section-header">Կոդ</span>
+        <pre>
+class User {
+    int age;
+public:
+    void setAge(int a) {
+        if(a > 0 && a < 120) age = a; // Տվյալների վալիդացիա
+        else cout << "Invalid age!";
+    }
+    int getAge() { return age; }
+};</pre>
+        <div class="analysis">
+            <b>Բացատրություն:</b> Ուղղակիորեն <code>obj.age = -5;</code> գրելը կխափանի ծրագրի տրամաբանությունը։
+            <code>setAge</code>-ը թույլ չի տալիս սխալ տվյալ ներմուծել։
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>8. Մի քանի բազային դասերի ժառանգում</h2>
+        <span class="section-header">Սահմանում</span>
+        <div class="text-block">C++-ը թույլ է տալիս, որ մեկ դասը ժառանգի հատկանիշներ մի քանի տարբեր դասերից միաժամանակ։
+        </div>
+        <span class="section-header">Կոդ</span>
+        <pre>
+class Camera {
+public: void takePhoto() { cout << "Photo taken!"; }
+};
+
+class Phone {
+public: void makeCall() { cout << "Calling..."; }
+};
+
+class SmartPhone : public Camera, public Phone {}; 
+// SmartPhone-ը ունի և՛ լուսանկարելու, և՛ զանգելու հնարավորություն</pre>
+    </div>
+
+    <div class="card">
+        <h2>10. Վիրտուալ ֆունկցիաներ և Բազմաձևություն</h2>
+        <span class="section-header">Սահմանում</span>
+        <div class="text-block"><b>Բազմաձևությունը (Polymorphism)</b> հնարավորություն է տալիս օգտագործել նույն անվամբ
+            ֆունկցիան տարբեր դասերի համար։ <b>Վիրտուալ ֆունկցիան</b> ապահովում է սրա աշխատանքը ցուցիչների միջոցով։</div>
+        <span class="section-header">Կոդ</span>
+        <pre>
+class Animal {
+public:
+    virtual void speak() { cout << "Animal sound"; } 
+};
+
+class Dog : public Animal {
+public:
+    void speak() override { cout << "Woof!"; } 
+};
+
+void makeSound(Animal* a) {
+    a->speak(); // Կկանչվի այն դասի speak-ը, որի օբյեկտը կփոխանցվի
+}</pre>
+        <div class="analysis">
+            <b>Վիրտուալ բազային դասեր:</b> Օգտագործվում են, երբ առկա է "Ադամանդաձև ժառանգում" (Diamond Problem)։ Դա
+            թույլ է տալիս խուսափել բազային դասի կրկնակի օրինակներից ժառանգ դասի մեջ։
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>1. Մաքուր վիրտուալ ֆունկցիաներ</h2>
+        <span class="section-title">Սահմանում</span>
+        <div class="text-block"><b>Մաքուր վիրտուալ ֆունկցիան</b> այն ֆունկցիան է, որը չունի իրականացում բազային դասում և
+            հավասարեցված է զրոյի (<code>= 0</code>): Այն դասը, որն ունի գոնե մեկ նման ֆունկցիա, կոչվում է <b>Աբստրակտ
+                դաս</b>:</div>
+        <span class="section-title">Բացատրություն</span>
+        <div class="text-block">Աբստրակտ դասը օգտագործվում է որպես ընդհանուր ինտերֆեյս: Մենք չենք կարող ստեղծել այդ դասի
+            օբյեկտը, բայց կարող ենք ստեղծել ցուցիչներ, որոնք կկառավարեն ժառանգ դասերի օբյեկտները:</div>
+        <span class="section-title">Կոդ</span>
+        <pre>
+class Device {
+public:
+    virtual void turnOn() = 0; // Մաքուր վիրտուալ ֆունկցիա
+};
+
+class Lamp : public Device {
+public:
+    void turnOn() override { cout << "Lamp is Glowing"; }
+};</pre>
+        <div class="code-explanation">
+            1. <code>virtual void turnOn() = 0;</code> - Սա նշանակում է, որ ցանկացած սարք (Device) պետք է միանալու ձև
+            ունենա, բայց "ընդհանուր սարքը" չգիտի ինչպես միանալ:<br>
+            2. <code>override</code> - Լամպը (Lamp) պարտավոր է իրականացնել այդ ֆունկցիան իր ձևով:
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>4. Ռացիոնալ թվերը նկարագրող դաս</h2>
+        <span class="section-title">Սահմանում</span>
+        <div class="text-block"><b>Ռացիոնալ թվերի դասը</b> ծրագրային մոդել է, որը թույլ է տալիս աշխատել կոտորակային
+            թվերի հետ (համարիչ/հայտարար)՝ պահպանելով ճշգրտությունը:</div>
+        <span class="section-title">Կոդ</span>
+        <pre>
+class Rational {
+    int num, den;
+public:
+    Rational(int n, int d) {
+        num = n;
+        den = (d != 0) ? d : 1;
+    }
+    void show() { cout << num << "/" << den; }
+};</pre>
+        <div class="code-explanation">
+            1. <code>num, den</code> - Private տվյալներ են (Ինկապսուլյացիա):<br>
+            2. <code>den = (d != 0) ? d : 1;</code> - Կոնստրուկտորում ստուգում ենք, որ հայտարարը չլինի 0: Սա ապահովում է
+            տվյալների վալիդությունը:
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>6. Դասերի և ֆունկցիաների կաղապարներ</h2>
+        <span class="section-title">Սահմանում</span>
+        <div class="text-block"><b>Կաղապարը (Template)</b> հզոր գործիք է, որը թույլ է տալիս սահմանել ֆունկցիա կամ դաս
+            առանց նախապես տվյալների տիպը (int, double) նշելու:</div>
+        <span class="section-title">Բացատրություն</span>
+        <div class="text-block">Սա կոչվում է գեներիկ ծրագրավորում: Մենք գրում ենք մեկ կոդ, որը կաշխատի ցանկացած տիպի
+            տվյալի հետ:</div>
+        <span class="section-title">Կոդ</span>
+        <pre>
+template &lt;typename T&gt;
+T sum(T a, T b) {
+    return a + b;
+}</pre>
+        <div class="code-explanation">
+            1. <code>template &lt;typename T&gt;</code> - Ասում ենք, որ <code>T</code>-ն կամայական տիպ է:<br>
+            2. Երբ կանչենք <code>sum(5, 10)</code>, T-ն կդառնա <code>int</code>: Երբ կանչենք <code>sum(1.2, 3.4)</code>,
+            T-ն կդառնա <code>double</code>:
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>8-9. String դաս և ֆունկցիաներ</h2>
+        <span class="section-title">Սահմանում</span>
+        <div class="text-block"><b>String դասը</b> C++ Standard Library-ի մաս է, որը նախատեսված է տեքստային տվյալների
+            հետ հեշտ և անվտանգ աշխատելու համար:</div>
+        <span class="section-title">Կոդ</span>
+        <pre>
+string s1 = "Hello";
+string s2 = "World";
+string s3 = s1 + " " + s2; // Hello World
+cout << s3.length();       // 11
+cout << s3.find("World");  // 6</pre>
+        <div class="code-explanation">
+            1. <code>+</code> - Օպերատորը վերասահմանված է տողերը միացնելու (concatenation) համար:<br>
+            2. <code>length()</code> - Վերադարձնում է նիշերի քանակը:<br>
+            3. <code>find()</code> - Որոնում է տեքստը և վերադարձնում առաջին հանդիպած ինդեքսը:
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>10. Vector դաս</h2>
+        <span class="section-title">Սահմանում</span>
+        <div class="text-block"><b>Vector-ը</b> դինամիկ զանգված է: Ի տարբերություն սովորական զանգվածի, վեկտորը կարող է
+            ավտոմատ մեծանալ կամ փոքրանալ:</div>
+        <span class="section-title">Կոդ</span>
+        <pre>
+vector&lt;int&gt; v;
+v.push_back(10); 
+v.push_back(20);
+v.pop_back(); // Հեռացնում է 20-ը</pre>
+        <div class="code-explanation">
+            1. <code>push_back()</code> - Ավելացնում է տարր վերջից և եթե տեղ չկա, ինքնուրույն հատկացնում է ավելի մեծ
+            հիշողություն:<br>
+            2. <code>pop_back()</code> - Ջնջում է վերջին տարրը:
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="tag">Ժառանգականություն</span>
+        <h2>2. Կետ և Շրջանագիծ դասեր</h2>
+        <div class="step">
+            <span class="step-title">Սահմանում և Բացատրություն</span>
+            <p>Այս խնդիրը ցույց է տալիս <b>բազային և ածանցված</b> դասերի կապը: Շրջանագիծը "կետ է", որն ունի նաև շառավիղ:
+                Մենք ժառանգում ենք կոորդինատները և ավելացնում նոր ֆունկցիոնալություն:</p>
+        </div>
+        <pre>
+class Point {
+protected:
+    double x, y; // Կոորդինատներ
+public:
+    Point(double x1, double y1) : x(x1), y(y1) {}
+};
+
+class Circle : public Point {
+    double r; // Շառավիղ
+public:
+    Circle(double x1, double y1, double r1) : Point(x1, y1), r(r1) {}
+    double getArea() { return 3.14159 * r * r; }
+};</pre>
+        <div class="code-analysis">
+            <b>Վերլուծություն:</b>
+            <ul>
+                <li><code>protected x, y</code>: Թույլ է տալիս Circle-ին ուղղակի մուտք ունենալ կոորդինատներին:</li>
+                <li><code>Point(x1, y1)</code>: Կանչվում է բազային կոնստրուկտորը՝ կենտրոնը սահմանելու համար:</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="tag">Տվյալների Կառուցվածքներ</span>
+        <h2>5. Stack (Ստեկ) դասի ստեղծում</h2>
+        <div class="step">
+            <span class="step-title">Սահմանում և Տրամաբանություն</span>
+            <p>Ստեկը գծային տվյալների կառուցվածք է, որտեղ տարրերի ավելացումն ու հեռացումը կատարվում է միայն մի ծայրից
+                (Top): Այն հետևում է <b>LIFO</b> սկզբունքին:</p>
+        </div>
+        <pre>
+class Stack {
+private:
+    int data[100];
+    int top;
+public:
+    Stack() { top = -1; } // Սկզբնական վիճակը դատարկ է
+    
+    void push(int x) {
+        if (top >= 99) cout << "Stack Overflow!";
+        else data[++top] = x;
+    }
+    
+    int pop() {
+        if (top < 0) return -1; // Stack Empty
+        return data[top--];
+    }
+};</pre>
+        <div class="code-analysis">
+            <b>Վերլուծություն:</b>
+            <ul>
+                <li><code>top</code>: Ինդեքս է, որը ցույց է տալիս վերջին տարրի դիրքը:</li>
+                <li><code>++top</code>: Նախ ավելացնում ենք ինդեքսը, հետո դնում արժեքը:</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="tag">Խաղային Ալգորիթմ</span>
+        <h2>7. TicTacToe (Իքս-Զրո) խաղի տրամաբանությունը</h2>
+        <div class="step">
+            <span class="step-title">Իրականացման քայլերը</span>
+            <p>Խաղը պահանջում է <b>3x3 զանգված</b> և ցիկլ, որը հերթով թույլ է տալիս խաղացողներին քայլ կատարել:</p>
+        </div>
+        <pre>
+class TicTacToe {
+    char board[3][3];
+public:
+    void init() {
+        for(int i=0; i<3; i++)
+            for(int j=0; j<3; j++) board[i][j] = ' ';
+    }
+    
+    bool checkWin(char p) {
+        for(int i=0; i<3; i++) {
+            if(board[i][0] == p && board[i][1] == p && board[i][2] == p) return true; // Տող
+            if(board[0][i] == p && board[1][i] == p && board[2][i] == p) return true; // Սյուն
+        }
+        return false;
+    }
+};</pre>
+        <div class="logic-box">
+            <b>Հաղթանակի ստուգում:</b> Պետք է ստուգել 3 տողերը, 3 սյուները և 2 անկյունագծերը: Եթե որևէ տեղ կա նույն
+            սիմվոլի (X կամ O) եռյակ, խաղը ավարտվում է:
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="tag">Մաթեմատիկական Մոդել</span>
+        <h2>9. Complex Class (Կոմպլեքս թվեր)</h2>
+        <div class="step">
+            <span class="step-title">Սահմանում</span>
+            <p>Կոմպլեքս թվերի հետ աշխատելու համար օգտագործում ենք <b>Operator Overloading</b>, որպեսզի <code>+</code>
+                նշանը հասկանա օբյեկտների գումարումը:</p>
+        </div>
+        <pre>
+class Complex {
+    double real, imag;
+public:
+    Complex(double r=0, double i=0) : real(r), imag(i) {}
+
+    // Օպերատորի ծանրաբեռնում
+    Complex operator + (const Complex& other) {
+        return Complex(real + other.real, imag + other.imag);
+    }
+    
+    void print() { cout << real << " + " << imag << "i"; }
+};</pre>
+        <div class="code-analysis">
+            <b>Վերլուծություն:</b>
+            <p><code>operator +</code> ֆունկցիան թույլ է տալիս գրել <code>c3 = c1 + c2;</code>: Սա բարձրացնում է կոդի
+                ընթերցելիությունը:</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="tag">Ռացիոնալ Թվեր</span>
+        <h2>10. Rational Class (Կոտորակներ)</h2>
+        <div class="step">
+            <span class="step-title">Տրամաբանություն</span>
+            <p>Ռացիոնալ թիվը պետք է միշտ լինի կրճատված տեսքով (օգտագործելով Ամենամեծ Ընդհանուր Բաժանարարը՝ ԱԸԲ/GCD):</p>
+        </div>
+        <pre>
+class Rational {
+    int n, d;
+    int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
+public:
+    Rational(int num, int den) {
+        int common = gcd(num, den);
+        n = num / common;
+        d = den / common;
+    }
+    void show() { cout << n << "/" << d; }
+};</pre>
+        <div class="code-analysis">
+            <b>Վերլուծություն:</b>
+            <p>Կոնստրուկտորն ավտոմատ կերպով կրճատում է կոտորակը: Օրինակ՝ <code>Rational(10, 20)</code>-ը կպահվի որպես
+                <code>1/2</code>:
+            </p>
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">Game Dev / String</span>
+        <h2>Բառի տառերի գուշակում խաղի ստեղծում</h2>
+
+        <span class="section-header">Խաղի տրամաբանությունը</span>
+        <div class="text-block">
+            Ծրագիրը պահում է թաքնված բառ, իսկ օգտատերը փորձում է գուշակել այն տառ առ տառ: Յուրաքանչյուր քայլում
+            ցուցադրվում է բառի ընթացիկ վիճակը (գուշակված տառերը և աստղանիշները):
+        </div>
+
+
+
+        <span class="section-header">Կոդի իրականացում</span>
+        <pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+int main() {
+    string secretWord = "cppprogramming";
+    string guessedWord(secretWord.length(), '*'); // Ստեղծում ենք '*' տող
+    int attempts = 6;
+    char letter;
+
+    cout << "Welcome to Word Guess Game!" << endl;
+
+    while (attempts > 0 && guessedWord != secretWord) {
+        cout << "\nWord: " << guessedWord << endl;
+        cout << "Attempts left: " << attempts << endl;
+        cout << "Enter a letter: ";
+        cin >> letter;
+
+        bool found = false;
+        for (int i = 0; i < secretWord.length(); i++) {
+            if (secretWord[i] == letter) {
+                guessedWord[i] = letter;
+                found = true;
+            }
+        }
+
+        if (!found) {
+            attempts--;
+            cout << "Wrong letter!" << endl;
+        }
+    }
+
+    if (guessedWord == secretWord) {
+        cout << "\nCongratulations! You won! The word was: " << secretWord << endl;
+    } else {
+        cout << "\nGame Over! You lost. The word was: " << secretWord << endl;
+    }
+
+    return 0;
+}</pre>
+
+        <span class="section-header">Օգտագործված String գործիքներ</span>
+        <div class="content-box">
+            <ul>
+                <li><b>Constructor:</b> <code>string guessedWord(len, '*')</code> - ստեղծում է տող, որը լցված է որոշակի
+                    քանակի նույն սիմվոլով:</li>
+                <li><b>Indexing:</b> <code>secretWord[i]</code> - մուտք դեպի տողի կոնկրետ սիմվոլին:</li>
+                <li><b>Comparison:</b> <code>guessedWord != secretWord</code> - տողերի ուղղակի համեմատում:</li>
+                <li><b>Length:</b> <code>length()</code> - բառի չափի որոշում ցիկլի համար:</li>
+            </ul>
+        </div>
+
+        <div class="logic-box">
+            <b>Հուշում.</b> Այս խաղը կարելի է բարդացնել՝ ավելացնելով բառերի զանգված (array), որտեղից ծրագիրը պատահական
+            (random) բառ կընտրի խաղի սկզբում:
+        </div>
+    </div>
+    <div class="card">
+        <h2>1-4. Երկրաչափական պատկերների համակարգ (Shape, Circle, Rectangle, Triangle)</h2>
+        <span class="section-header">Սահմանում</span>
+        <div class="content-box">
+            <b>Shape</b>-ը հանդես է գալիս որպես աբստրակտ բազային դաս, որը սահմանում է ընդհանուր ինտերֆեյս (օրինակ՝
+            մակերեսի հաշվարկ) բոլոր պատկերների համար։
+        </div>
+        <p>Օգտագործվում է <b>ժառանգականություն</b> և <b>պոլիմորֆիզմ</b>։ Ծնող դասում (Shape) հայտարարվում է վիրտուալ
+            ֆունկցիա, իսկ զավակ դասերը (Circle, Rectangle, Triangle) իրականացնում են այն՝ ըստ իրենց մաթեմատիկական
+            բանաձևերի։</p>
+        <span class="section-header">Կոդ</span>
+        <pre>
+class Shape {
+public:
+    virtual double getArea() = 0; // Մաքուր վիրտուալ ֆունկցիա
+};
+
+class Rectangle : public Shape {
+    double l, w;
+public:
+    Rectangle(double l1, double w1) : l(l1), w(w1) {}
+    double getArea() override { return l * w; }
+};
+
+class Circle : public Shape {
+    double r;
+public:
+    Circle(double r1) : r(r1) {}
+    double getArea() override { return 3.14 * r * r; }
+};</pre>
+        <div class="analysis-list">
+            <ul>
+                <li><code>virtual double getArea() = 0;</code> - Սա ստիպում է, որ ցանկացած պատկեր ունենա մակերեսի
+                    հաշվարկ, բայց "ընդհանուր պատկերը" չունի բանաձև։</li>
+                <li><code>override</code> - Հուշում է կոմպիլյատորին, որ մենք փոխում ենք ծնողի ֆունկցիան։</li>
+            </ul>
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">Geometry / Basic Class</span>
+        <h2>1. Point class պարունակող ծրագրի ստեղծում</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            <b>Point</b> դասը ներկայացնում է կետ երկչափ կոորդինատային համակարգում (x, y): Այն հաճախ օգտագործվում է որպես
+            հիմք ավելի բարդ երկրաչափական պատկերների (օրինակ՝ Circle կամ Rectangle) համար:
+        </div>
+
+
+
+        <span class="section-header">Կոդի իրականացում</span>
+        <pre>
+#include &lt;iostream&gt;
+#include &lt;cmath&gt; // sqrt() և pow() ֆունկցիաների համար
+
+using namespace std;
+
+class Point {
+private:
+    double x, y;
+
+public:
+    // Դեֆոլտ կոնստրուկտոր
+    Point() : x(0), y(0) {}
+
+    // Պարամետրական կոնստրուկտոր
+    Point(double xVal, double yVal) : x(xVal), y(yVal) {}
+
+    // Getter-ներ
+    double getX() const { return x; }
+    double getY() const { return y; }
+
+    // Մեթոդ՝ հաշվելու հեռավորությունը մեկ այլ կետից
+    double distanceTo(const Point& other) {
+        return sqrt(pow(other.x - x, 2) + pow(other.y - y, 2));
+    }
+
+    void display() {
+        cout << "Point(" << x << ", " << y << ")" << endl;
+    }
+};
+
+int main() {
+    Point p1(3.0, 4.0);
+    Point p2(0.0, 0.0);
+
+    p1.display();
+    p2.display();
+
+    cout << "Distance between points: " << p1.distanceTo(p2) << endl;
+
+    return 0;
+}</pre>
+
+
+
+        <div class="analysis-list">
+            <b>Առանձնահատկությունները.</b>
+            <ul>
+                <li><b>Encapsulation:</b> Կոորդինատները <code>private</code> են, որպեսզի կանխվի դրանց անվերահսկելի
+                    փոփոխությունը:</li>
+                <li><b>Const methods:</b> <code>getX()</code> և <code>getY()</code> մեթոդները նշված են որպես
+                    <code>const</code>, քանի որ դրանք չեն փոխում օբյեկտի վիճակը:
+                </li>
+                <li><b>Մաթեմատիկական տրամաբանություն:</b> <code>distanceTo</code> մեթոդը կիրառում է Պյութագորասի թեորեմը
+                    հեռավորությունը հաշվելու համար:</li>
+            </ul>
+        </div>
+
+        <div class="logic-box">
+            <b>Հուշում.</b> Point դասը հաճախ օգտագործվում է <b>Composition</b> (կոմպոզիցիա) ցուցադրելու համար: Օրինակ՝
+            <code>Circle</code> դասը կարող է ունենալ <code>Point</code> տիպի փոփոխական՝ որպես շրջանագծի կենտրոն:
+        </div>
+    </div>
+    <div class="card">
+        <h2>11. QuickSort (Արագ կարգավորման ալգորիթմ)</h2>
+        <span class="section-header">Սահմանում</span>
+        <div class="content-box">
+            <b>QuickSort</b>-ը ռեկուրսիվ ալգորիթմ է, որը հիմնված է "Բաժանիր և տիրիր" (Divide and Conquer) սկզբունքի վրա։
+        </div>
+        <p>Ալգորիթմը ընտրում է մի տարր որպես <b>Pivot</b> (առանցքային տարր)։ Զանգվածը բաժանում է երկու մասի՝ առանցքից
+            փոքրերը ձախ կողմում, մեծերը՝ աջ։ Այնուհետև նույնը կատարում է ստացված մասերի հետ։</p>
+        <span class="section-header">Կոդ</span>
+        <pre>
+void quickSort(int arr[], int left, int right) {
+    int i = left, j = right;
+    int pivot = arr[(left + right) / 2]; // Ընտրում ենք մեջտեղի տարրը
+
+    while (i <= j) {
+        while (arr[i] < pivot) i++; // Գտնում ենք տարր, որը պետք է լինի աջում
+        while (arr[j] > pivot) j--; // Գտնում ենք տարր, որը պետք է լինի ձախում
+        if (i <= j) {
+            swap(arr[i], arr[j]); // Տեղերով փոխում ենք
+            i++; j--;
+        }
+    }
+    if (left < j) quickSort(arr, left, j);
+    if (i < right) quickSort(arr, i, right);
+}</pre>
+        <div class="analysis-list">
+            <ul>
+                <li><code>pivot</code> - Առանցքն է, որի շուրջ կատարվում է դասավորումը։</li>
+                <li><code>swap</code> - Ֆունկցիա է, որը փոխում է երկու փոփոխականների արժեքները։</li>
+                <li>Ալգորիթմի բարդությունը միջինում $O(n \log n)$ է։</li>
+            </ul>
+        </div>
+    </div>
+    <div class="card">
+        <span class="tag">Algorithms / Sorting</span>
+        <h2>1. bubbleSort կարգաբերման ալգորիթմը</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            <b>Bubble Sort-ը</b> պարզ տեսակավորման ալգորիթմ է, որը բազմիցս անցնում է զանգվածի միջով, համեմատում է հարևան
+            տարրերը և տեղերով փոխում դրանք, եթե նրանք սխալ հաջորդականությամբ են: Ամենամեծ տարրը «պղպջակի» նման
+            բարձրանում է դեպի զանգվածի վերջը:
+        </div>
+
+
+
+        <span class="section-header">Կոդի իրականացում</span>
+        <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        // Վերջին i տարրերն արդեն տեղում են
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Տեղերով փոխում (Swap)
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) cout << arr[i] << " ";
+    cout << endl;
+}
+
+int main() {
+    int data[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(data) / sizeof(data[0]);
+
+    cout << "Unsorted array: ";
+    printArray(data, n);
+
+    bubbleSort(data, n);
+
+    cout << "Sorted array: ";
+    printArray(data, n);
+    return 0;
+}</pre>
+
+        <span class="section-header">Ալգորիթմի բնութագիրը</span>
+        <div class="content-box">
+            <ul>
+                <li><b>Բարդություն:</b> $O(n^2)$ վատագույն և միջին դեպքերում:</li>
+                <li><b>Հիշողություն:</b> $O(1)$, քանի որ լրացուցիչ զանգված չի պահանջվում:</li>
+                <li><b>Օպտիմալացում:</b> Կարելի է ավելացնել <code>bool swapped</code> փոփոխական՝ ալգորիթմը կանգնեցնելու
+                    համար, եթե տվյալ անցման ժամանակ ոչ մի տեղափոխություն չի եղել:</li>
+            </ul>
+        </div>
+
+        <div class="logic-box">
+            <b>Հուշում քննության համար:</b> Bubble Sort-ը արդյունավետ չէ մեծ զանգվածների համար, բայց այն ամենապարզն է
+            իրականացման և բացատրման համար: Շեշտիր, որ ներքին ցիկլի սահմանը <code>n - i - 1</code> է, քանի որ ամեն քայլից
+            հետո մեկ տարր արդեն գտնվում է իր ճիշտ տեղում:
+        </div>
+    </div>
+    <div class="card">
+        <h2>9. Շախմատ (8 թագուհու խնդիր)</h2>
+        <span class="section-header">Սահմանում</span>
+        <div class="content-box">
+            Խնդիրն է տեղադրել 8 թագուհի 8x8 տախտակի վրա այնպես, որ ոչ մի երկու թագուհի չհարվածեն միմյանց (չլինեն նույն
+            տողում, սյունում կամ անկյունագծում)։
+        </div>
+        <p>Օգտագործվում է <b>Backtracking</b> (Հետադարձ քայլերի) մեթոդը։ Եթե թագուհուն տեղադրելուց հետո տեսնում ենք, որ
+            հաջորդ տողում տեղ չկա, ծրագիրը վերադառնում է նախորդ տող և փոխում թագուհու դիրքը։</p>
+        <span class="section-header">Կոդի կառուցվածք</span>
+        <pre>
+bool isSafe(int board[8][8], int row, int col) {
+    // Ստուգում է տողը, սյունը և անկյունագծերը
+    // Վերադարձնում է true, եթե կարելի է տեղադրել
+}
+
+bool solve(int board[8][8], int col) {
+    if (col >= 8) return true; // Բոլորը տեղադրված են
+    for (int i = 0; i < 8; i++) {
+        if (isSafe(board, i, col)) {
+            board[i][col] = 1; // Փորձում ենք տեղադրել
+            if (solve(board, col + 1)) return true;
+            board[i][col] = 0; // Backtrack (հետքայլ)
+        }
+    }
+    return false;
+}</pre>
+    </div>
+    <div class="card">
+        <span class="tag">Game Logic / 2D Arrays</span>
+        <h2>1. Լաբիրինթ (Maze) ծրագրի ստեղծում</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            Լաբիրինթոսը մոդելավորվում է որպես սիմվոլների <b>երկչափ զանգված (char matrix)</b>: Յուրաքանչյուր սիմվոլ ունի
+            իր նշանակությունը՝ պատեր (#), ազատ ճանապարհ (.), խաղացող (P) և ելք (E):
+        </div>
+
+
+
+        <span class="section-header">Կոդի իրականացում</span>
+        <pre>
+#include &lt;iostream&gt;
+#include &lt;conio.h&gt; // _getch() ֆունկցիայի համար (Windows)
+
+using namespace std;
+
+const int ROWS = 5;
+const int COLS = 10;
+
+char maze[ROWS][COLS] = {
+    {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
+    {'#', 'P', '.', '.', '#', '.', '.', '.', '.', '#'},
+    {'#', '#', '#', '.', '#', '.', '#', '#', '.', '#'},
+    {'#', '.', '.', '.', '.', '.', '.', '#', 'E', '#'},
+    {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}
+};
+
+int pX = 1, pY = 1; // Խաղացողի սկզբնական դիրքը
+
+void drawMaze() {
+    system("cls"); // Մաքրել էկրանը
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) cout << maze[i][j];
+        cout << endl;
+    }
+}
+
+int main() {
+    while (true) {
+        drawMaze();
+        if (maze[pX][pY] == 'E') {
+            cout << "You Escaped!" << endl;
+            break;
+        }
+
+        char move = _getch(); // Սպասել ստեղնի սեղմմանը
+        int nextX = pX, nextY = pY;
+
+        if (move == 'w') nextX--;      // Up
+        else if (move == 's') nextX++; // Down
+        else if (move == 'a') nextY--; // Left
+        else if (move == 'd') nextY++; // Right
+
+        if (maze[nextX][nextY] != '#') { // Ստուգում ենք պատի առկայությունը
+            maze[pX][pY] = '.';      // Հին տեղը դարձնում ենք դատարկ
+            pX = nextX; pY = nextY;
+            if (maze[pX][pY] != 'E') maze[pX][pY] = 'P';
+        }
+    }
+    return 0;
+}</pre>
+
+        <span class="section-header">Ալգորիթմական քայլերը</span>
+        <div class="content-box">
+            <ul>
+                <li><b>Initialization:</b> Սահմանվում է լաբիրինթոսի քարտեզը և խաղացողի կոորդինատները:</li>
+                <li><b>Input Logic:</b> Օգտագործվում է <code>W, A, S, D</code> ստեղները շարժման համար:</li>
+                <li><b>Collision Detection:</b> Շարժումից առաջ ստուգվում է՝ արդյո՞ք թիրախային վանդակը պատ (#) չէ:</li>
+                <li><b>Win Condition:</b> Խաղը ավարտվում է, երբ խաղացողի կոորդինատները համընկնում են 'E' (Exit) վանդակի
+                    հետ:</li>
+            </ul>
+        </div>
+
+        <div class="logic-box">
+            <b>Հուշում քննության համար:</b> Այս ծրագիրը կարելի է ներկայացնել որպես <b>Backtracking</b> ալգորիթմների
+            ներածություն, որտեղ համակարգիչն ինքն է փնտրում ելքը լաբիրինթոսից:
+        </div>
+    </div>
+    <div class="card">
+        <h2>10. Վերելակ (Elevator) ծրագիր</h2>
+        <span class="section-header">Բացատրություն</span>
+        <p>Վերելակի ծրագիրը մոդելավորում է իրական վերելակի վարքը։ Այն ունի ընթացիկ հարկ և սպասում է հրահանգի՝ որ հարկը
+            գնալ։</p>
+        <span class="section-header">Կոդ</span>
+        <pre>
+class Elevator {
+    int currentFloor;
+public:
+    Elevator() : currentFloor(1) {} // Սկսում ենք 1-ին հարկից
+
+    void moveTo(int floor) {
+        if (floor > currentFloor) {
+            cout << "Going up to floor " << floor << endl;
+            currentFloor = floor;
+        } else if (floor < currentFloor) {
+            cout << "Going down to floor " << floor << endl;
+            currentFloor = floor;
+        } else {
+            cout << "Already on floor " << floor << endl;
+        }
+    }
+};</pre>
+    </div>
+    <div class="card">
+        <span class="tag">Basic Class</span>
+        <h2>1. Student class պարունակող ծրագրի ստեղծում</h2>
+
+        <span class="section-header">Տեսություն</span>
+        <div class="text-block">
+            <b>Student</b> դասը ծառայում է որպես մոդել իրական ուսանողի համար: Այն պարունակում է անձնական տվյալներ
+            (փոփոխականներ) և գործողություններ (մեթոդներ), որոնք թույլ են տալիս կառավարել այդ տվյալները:
+        </div>
+
+
+
+        <span class="section-header">Կոդի իրականացում</span>
+        <pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+
+using namespace std;
+
+class Student {
+private:
+    string name;
+    int rollNumber;
+    vector&lt;int&gt; grades;
+
+public:
+    // Կոնստրուկտոր
+    Student(string n, int rn) : name(n), rollNumber(rn) {}
+
+    // Մեթոդ գնահատական ավելացնելու համար
+    void addGrade(int grade) {
+        if (grade >= 0 && grade <= 100) {
+            grades.push_back(grade);
+        }
+    }
+
+    // Մեթոդ միջին որակական գնահատականը (GPA) հաշվելու համար
+    double getAverage() {
+        if (grades.empty()) return 0.0;
+        double sum = 0;
+        for (int g : grades) sum += g;
+        return sum / grades.size();
+    }
+
+    void displayInfo() {
+        cout << "Student: " << name << " (ID: " << rollNumber << ")" << endl;
+        cout << "Average Grade: " << getAverage() << endl;
+    }
+};
+
+int main() {
+    Student s1("Anna", 101);
+    s1.addGrade(85);
+    s1.addGrade(92);
+    s1.addGrade(78);
+
+    s1.displayInfo();
+    return 0;
+}</pre>
+
+        <div class="analysis-list">
+            <b>Դասի բաղադրիչները.</b>
+            <ul>
+                <li><b>Տվյալների թաքցնում:</b> <code>name</code> և <code>grades</code> դաշտերը <code>private</code> են,
+                    ինչը թույլ չի տալիս դրսից սխալ տվյալներ ներմուծել:</li>
+                <li><b>Դինամիկ տվյալներ:</b> Օգտագործված է <code>std::vector</code> գնահատականների անհայտ քանակ պահելու
+                    համար:</li>
+                <li><b>Հաշվարկային մեթոդներ:</b> <code>getAverage()</code>-ը իրականացնում է տրամաբանական գործողություն
+                    օբյեկտի ներքին տվյալների հետ:</li>
+            </ul>
+        </div>
+
+        <div class="logic-box">
+            <b>Հուշում քննության համար:</b> Եթե հարցնեն ինչպես ավելացնել նոր ֆունկցիոնալություն, կարող ես առաջարկել
+            <b>Scholarship</b> (Կրթաթոշակ) հաշվող մեթոդը, որը հիմնված կլինի միջին գնահատականի վրա:
+        </div>
+    </div>
+    <div class="footer">
+        <p>Ուղեցույցը պատրաստված է քննական բարձր արդյունքներ ապահովելու համար:</p>
+    </div>
+
+</body>
+
+<script>
+    function performSearch() {
+        // Ստանալ որոնվող տեքստը
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        // Ստանալ բոլոր քարտերը
+        const cards = document.querySelectorAll('.card');
+        const noResults = document.getElementById('noResults');
+        let foundAny = false;
+
+        cards.forEach(card => {
+            // Վերցնում ենք վերնագիրը (h2)
+            const title = card.querySelector('h2').innerText.toLowerCase();
+
+            // Եթե վերնագիրը պարունակում է որոնվող բառը
+            if (title.includes(input)) {
+                card.classList.remove('hidden'); // Ցույց տալ
+                foundAny = true;
+            } else {
+                card.classList.add('hidden'); // Թաքցնել
+            }
+        });
+
+        // Եթե ոչինչ չի գտնվել, ցույց տալ հաղորդագրություն
+        if (foundAny || input === "") {
+            noResults.style.display = "none";
+        } else {
+            noResults.style.display = "block";
+        }
+    }
+</script>
+
+</html>
